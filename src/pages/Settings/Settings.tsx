@@ -1,11 +1,11 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import './Settings.css';
 
 const Settings = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-
+        
       </IonContent>
     </IonPage>
   );
