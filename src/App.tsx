@@ -1,8 +1,13 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonContent, IonHeader, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar, setupIonicReact } from '@ionic/react';
+import { IonApp, IonContent, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home/Home';
 import { home, person } from 'ionicons/icons';
+
+import Home from './pages/Home/Home';
+import Settings from './pages/Settings/Settings';
+import AppHeader from './components/AppHeader';
+import { useReduxDispatch } from './redux/store';
+import { setAppHeaderTitle } from './redux/reducers/appHeaderReducer/appHeader';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -22,19 +27,16 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Settings from './pages/Settings/Settings';
 
 setupIonicReact();
 
 const App = () => {
+  const dispatch = useReduxDispatch();
+
   return (
     <IonApp>
       <IonReactRouter>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Home</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <AppHeader />
         <IonContent>
           <IonTabs>
             <IonRouterOutlet>
@@ -45,10 +47,10 @@ const App = () => {
               </Route>
             </IonRouterOutlet>
             <IonTabBar slot='bottom'>
-              <IonTabButton tab='home' href='/home'>
+              <IonTabButton onClick={() => dispatch(setAppHeaderTitle('Home'))} tab='home' href='/home'>
                 <IonIcon icon={home} />
               </IonTabButton>
-              <IonTabButton tab='settings' href='/settings'>
+              <IonTabButton onClick={() => dispatch(setAppHeaderTitle('Settings'))} tab='settings' href='/settings'>
                 <IonIcon icon={person} />
               </IonTabButton>
             </IonTabBar>
