@@ -7,19 +7,23 @@ import './Home.css';
 import { BinnaclesGroup } from '../../common/interfaces/binnaclesGroup';
 import { formatLocaleDate } from '../../utils/date';
 import { Card } from '../../components/Card/Card';
+import { useReduxDispatch } from '../../redux/store';
+import { createBinnaclesGroup } from '../../redux/services/binnaclesGroup.services';
 
 const Home = () => {
   const modal = useRef<HTMLIonModalElement>(null);
   const inputTitle = useRef<HTMLIonInputElement>(null);
   const inputDate = useRef<HTMLIonInputElement>(null);
-  const inputImgUrl = useRef<HTMLIonInputElement>(null);
+  const inputFrontPage = useRef<HTMLIonInputElement>(null);
   const currentDate = formatLocaleDate(`${new Date()}`);
+
+  const dispatch = useReduxDispatch();
 
   function confirm() {
     const binnacleGroup: BinnaclesGroup = {
       title: `${inputTitle.current?.value}`,
       date: `${inputDate.current?.value}`,
-      imgUrl: `${inputImgUrl.current?.value}`,
+      frontPage: `${inputFrontPage.current?.value}`,
     }
     modal.current?.dismiss(binnacleGroup, 'confirm');
   }
@@ -28,7 +32,7 @@ const Home = () => {
     const { role, data: newBinnacleGroup } = event.detail;
 
     if (role === 'confirm') {
-      console.log(newBinnacleGroup);
+      dispatch(createBinnaclesGroup(newBinnacleGroup));
     }
   }
 
@@ -57,7 +61,7 @@ const Home = () => {
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Imagen de portada</IonLabel>
-            <IonInput ref={inputImgUrl} type="text" placeholder="Por el momento URL uwu" />
+            <IonInput ref={inputFrontPage} type="text" placeholder="Por el momento URL uwu" />
           </IonItem>
         </IonContent>
       </IonModal>

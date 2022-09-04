@@ -15,7 +15,7 @@ export const fetchBinnacles = () =>async (dispatch:Function) => {
   }
 }
 
-export const createBinnaclesGroup = (data: Binnacle) =>async (dispatch:Function) => {
+export const createBinnacle = (data: Binnacle) =>async (dispatch:Function) => {
   try {
     const response = await axios.post(BINNACLE_URL, data);
     if (response.data) {
