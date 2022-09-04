@@ -1,30 +1,67 @@
-import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import React, { useRef } from 'react';
 import { add } from 'ionicons/icons';
-import './Home.css';
-import React, { useState, useRef } from 'react';
-import {IonButtons,IonButton,IonModal,IonItem,IonLabel, IonInput} from '@ionic/react';
+import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonModal, IonItem, IonLabel, IonInput } from '@ionic/react';
 import { OverlayEventDetail } from '@ionic/core/components';
 
+import './Home.css';
+import { BinnaclesGroup } from '../../common/interfaces/binnaclesGroup';
+import { formatLocaleDate } from '../../utils/date';
 
 const Home = () => {
+  const modal = useRef<HTMLIonModalElement>(null);
+  const inputTitle = useRef<HTMLIonInputElement>(null);
+  const inputDate = useRef<HTMLIonInputElement>(null);
+  const inputImgUrl = useRef<HTMLIonInputElement>(null);
+  const currentDate = formatLocaleDate(`${new Date()}`);
 
-  const [message, setMessage] = useState(
-    'This modal example uses triggers to automatically open a modal when the button is clicked.'
-  );
-  
   function confirm() {
-    modal.current?.dismiss(input.current?.value, 'confirm');
+    const binnacleGroup: BinnaclesGroup = {
+      title: `${inputTitle.current?.value}`,
+      date: `${inputDate.current?.value}`,
+      imgUrl: `${inputImgUrl.current?.value}`,
+    }
+    modal.current?.dismiss(binnacleGroup, 'confirm');
   }
   
-  function onWillDismiss(ev: CustomEvent<OverlayEventDetail>) {
-    if (ev.detail.role === 'confirm') {
-      setMessage(`Hello, ${ev.detail.data}!`);
+  function onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    const { role, data: newBinnacleGroup } = event.detail;
+
+    if (role === 'confirm') {
+      console.log(newBinnacleGroup);
     }
   }
-  
-  
-  const modal = useRef<HTMLIonModalElement>(null);
-  const input = useRef<HTMLIonInputElement>(null);
+
+  const renderModal = () => {
+    return(
+      <IonModal ref={modal} trigger="open-modal" onWillDismiss={(event) => onWillDismiss(event)}>
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonButton onClick={() => modal.current?.dismiss()}>Cancel</IonButton>
+            </IonButtons>
+            <IonTitle className='ion-text-center'>Crear | BitacGroup</IonTitle>
+            <IonButtons slot="end">
+              <IonButton strong={true} onClick={() => confirm()}>Crear</IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent className="ion-padding">
+          <IonItem>
+            <IonLabel position="stacked">Titulo</IonLabel>
+            <IonInput ref={inputTitle} type="text" placeholder="Nombre de grupo de bitacora" />
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">Fecha de creación</IonLabel>
+            <IonInput ref={inputDate} type="date" value={currentDate} />
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">Imagen de portada</IonLabel>
+            <IonInput ref={inputImgUrl} type="text" placeholder="Por el momento URL uwu" />
+          </IonItem>
+        </IonContent>
+      </IonModal>
+    );
+  }
   
   return (
     <IonPage>
@@ -34,35 +71,7 @@ const Home = () => {
             <IonIcon icon={add} />
           </IonFabButton>
         </IonFab>
-        <IonModal ref={modal} trigger="open-modal" onWillDismiss={(ev) => onWillDismiss(ev)}>
-          <IonHeader>
-            <IonToolbar>
-              <IonButtons slot="start">
-                <IonButton onClick={() => modal.current?.dismiss()}>Cancel</IonButton>
-              </IonButtons>
-              <IonTitle>Crear | BitaGroup</IonTitle>
-              <IonButtons slot="end">
-                <IonButton strong={true} onClick={() => confirm()}>
-                  Crear
-                </IonButton>
-              </IonButtons>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent className="ion-padding">
-            <IonItem>
-              <IonLabel position="stacked">Titulo</IonLabel>
-              <IonInput ref={input} type="text" placeholder="Nombre de grupo de bitacora" />
-            </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">Fecha de creación</IonLabel>
-              <IonInput ref={input} type="date" />
-            </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">Imagen de portada</IonLabel>
-              <IonInput ref={input} type="text" placeholder="Por el momento URL uwu" />
-            </IonItem>
-          </IonContent>
-        </IonModal>
+        { renderModal() }
       </IonContent>
     </IonPage>
   );
