@@ -4,9 +4,8 @@ import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonPage, IonTitle
 import { OverlayEventDetail } from '@ionic/core/components';
 
 import './Home.css';
-import { BinnacleGroup } from '../../common/interfaces/binnacleGroup';
+import { BinnaclesGroup } from '../../common/interfaces/binnaclesGroup';
 import { formatLocaleDate } from '../../utils/date';
-
 
 const Home = () => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -16,7 +15,7 @@ const Home = () => {
   const currentDate = formatLocaleDate(`${new Date()}`);
 
   function confirm() {
-    const binnacleGroup: BinnacleGroup = {
+    const binnacleGroup: BinnaclesGroup = {
       title: `${inputTitle.current?.value}`,
       date: `${inputDate.current?.value}`,
       imgUrl: `${inputImgUrl.current?.value}`,
@@ -26,7 +25,7 @@ const Home = () => {
   
   function onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
     const { role, data: newBinnacleGroup } = event.detail;
-    
+
     if (role === 'confirm') {
       console.log(newBinnacleGroup);
     }
@@ -63,7 +62,6 @@ const Home = () => {
       </IonModal>
     );
   }
-  
   
   return (
     <IonPage>

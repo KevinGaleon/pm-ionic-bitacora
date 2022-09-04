@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import binnacleReducer from './binnacleReducer/binnacle';
-import binnacleGroupReducer from './binnacleGroupReducer/binnacleGroup';
+import binnacleGroupReducer from './binnaclesGroupReducer/binnaclesGroup';
 import appHeaderReducer from './appHeaderReducer/appHeader';
 
 const rootReducer = combineReducers({
