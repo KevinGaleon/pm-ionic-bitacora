@@ -6,19 +6,19 @@ import { BinnacleState } from './binnacle.interfaces';
 
 const initialState: BinnacleState = {
   binnacleList: [],
-  // binnacleSelected: {} as Binnacle,
-  binnacleSelected: {
-    _id: '',
-    binnacleGroupId: '15asf1e8asfas2g515464as',
-    title: 'Animales',
-    date: '04/09/2022',
-    description: 'Ser orgánico que vive , siente y se mueve por propio impulso',
-    comment: 'comentario sasfgasgasasg',
-    photos: [
-      'https://www.ngenespanol.com/wp-content/uploads/2018/09/Fotos-Divertidas-del-mundo-animal-P.png',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeCworbnSkOl6alVIp-hzCxM8Pv3MbdCPJpMlnsTpgJqvIKBFN_Bw7umhWnT5_aNp7RFY&usqp=CAU',
-    ],
-  },
+  binnacleSelected: {} as Binnacle,
+  // binnacleSelected: {
+  //   _id: '',
+  //   binnacleGroupId: '15asf1e8asfas2g515464as',
+  //   title: 'Animales',
+  //   date: '04/09/2022',
+  //   description: 'Ser orgánico que vive , siente y se mueve por propio impulso',
+  //   comment: 'comentario sasfgasgasasg',
+  //   photos: [
+  //     'https://www.ngenespanol.com/wp-content/uploads/2018/09/Fotos-Divertidas-del-mundo-animal-P.png',
+  //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeCworbnSkOl6alVIp-hzCxM8Pv3MbdCPJpMlnsTpgJqvIKBFN_Bw7umhWnT5_aNp7RFY&usqp=CAU',
+  //   ],
+  // },
   isBinnacleLoading: false,
 }
 
