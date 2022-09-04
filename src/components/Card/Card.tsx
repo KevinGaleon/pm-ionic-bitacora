@@ -1,28 +1,24 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonIcon, IonLabel, IonButton, IonImg, IonButtons } from '@ionic/react';
-import './Card.css';
+import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg } from '@ionic/react';
 
 interface Props {
   frontPage: string;
-  tittle: string;
+  title: string;
   date: string;
-  onClick?: () => void;
 }
 
 export const Card = (props: Props) => {
-
-  const { date, frontPage, tittle, onClick } = props;
-
+  const { date, frontPage, title } = props;
+  
   return (
-    <IonButtons onClick={onClick}>
-      <IonCard>
-        <IonCardHeader>
+    <IonCard>
+      <IonCardHeader>
+        <IonCardSubtitle>
           <IonImg src={frontPage}></IonImg>
-          <IonCardTitle>{tittle}</IonCardTitle>
-          <IonCardSubtitle>{date}</IonCardSubtitle>
-        </IonCardHeader>
-      </IonCard>
-    </IonButtons>
-
+        </IonCardSubtitle>
+        <IonCardTitle>{title}</IonCardTitle>
+        <IonCardSubtitle>{date}</IonCardSubtitle>
+      </IonCardHeader>
+    </IonCard>
   );
 };

@@ -15,7 +15,7 @@ const Home = () => {
   const modal = useRef<HTMLIonModalElement>(null);
   const inputTitle = useRef<HTMLIonInputElement>(null);
   const inputDate = useRef<HTMLIonInputElement>(null);
-  const inputImgUrl = useRef<HTMLIonInputElement>(null);
+  const inputFrontPage = useRef<HTMLIonInputElement>(null);
   const currentDate = formatLocaleDate(`${new Date()}`);
   const dispatch = useReduxDispatch ();
   const {binnacleGroupList} = useReduxSelector(state => state.binnacleGroup);
@@ -28,7 +28,7 @@ const Home = () => {
     const binnacleGroup: BinnaclesGroup = {
       title: `${inputTitle.current?.value}`,
       date: `${inputDate.current?.value}`,
-      frontPage: `${inputImgUrl.current?.value}`,
+      frontPage: `${inputFrontPage.current?.value}`,
     }
     modal.current?.dismiss(binnacleGroup, 'confirm');
   }
@@ -66,7 +66,7 @@ const Home = () => {
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Imagen de portada</IonLabel>
-            <IonInput ref={inputImgUrl} type="text" placeholder="Por el momento URL uwu" />
+            <IonInput ref={inputFrontPage} type="text" placeholder="Por el momento URL uwu" />
           </IonItem>
         </IonContent>
       </IonModal>
@@ -79,7 +79,7 @@ const Home = () => {
        {binnacleGroupList.map(binnaclesGroup =>{
         return <Card 
         frontPage ={binnaclesGroup.frontPage} 
-        tittle = {binnaclesGroup.title}
+        title = {binnaclesGroup.title}
         date = {binnaclesGroup.date}      
         />
       })}
