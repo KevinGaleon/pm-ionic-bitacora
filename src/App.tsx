@@ -27,6 +27,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import BinnaclesListScreen from './pages/BinnaclesListScreen/BinnaclesListScreen';
 
 setupIonicReact();
 
@@ -42,6 +43,7 @@ const App = () => {
             <IonRouterOutlet>
               <Route exact path="/home" component={Home} />
               <Route exact path="/settings" component={Settings} />
+              <Route exact path="/binnacles" component={BinnaclesListScreen} />
               <Route exact path="/">
                 <Redirect to="/home" />
               </Route>
