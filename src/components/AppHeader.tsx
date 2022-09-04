@@ -12,7 +12,7 @@ const AppHeader = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonButton onClick={() => dispatch(setAppHeaderTitle('Home'))} href='/home'>
+            <IonButton onClick={() => dispatch(setAppHeaderTitle('Home'))} routerLink='/home' >
               <IonIcon slot="icon-only" icon={arrowBack} color='black'/>
             </IonButton>
           </IonButtons>
