@@ -25,8 +25,9 @@ const Home = () => {
   }
   
   function onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
-    if (event.detail.role === 'confirm') {
-      const newBinnacleGroup: BinnacleGroup = event.detail.data;
+    const { role, data: newBinnacleGroup } = event.detail;
+    
+    if (role === 'confirm') {
       console.log(newBinnacleGroup);
     }
   }

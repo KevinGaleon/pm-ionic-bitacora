@@ -1,6 +1,8 @@
-import { BinnacleState } from './binnacle.interfaces';
-import { Binnacle } from '../../../common/interfaces/binnacle';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { Binnacle } from '../../../common/interfaces/binnacle';
+
+import { BinnacleState } from './binnacle.interfaces';
 
 const initialState: BinnacleState = {
   binnacleList: [],
