@@ -71,7 +71,8 @@ const Home = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <Card />
+        <Card frontPage='' title='Card Title' date={currentDate} />
+        <Card frontPage='' title='Animals' date={'12-09-2000'} />
         <IonFab  vertical="bottom" horizontal="end" slot="fixed">
           <IonFabButton id="open-modal">
             <IonIcon icon={add} />
