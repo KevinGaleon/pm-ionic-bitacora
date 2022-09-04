@@ -1,19 +1,28 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonIcon, IonLabel, IonButton } from '@ionic/react';
-import { pin, wifi, wine, warning, walk } from 'ionicons/icons';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonIcon, IonLabel, IonButton, IonImg, IonButtons } from '@ionic/react';
+import './Card.css';
 
-export const Card = () => {
+interface Props {
+  frontPage: string;
+  tittle: string;
+  date: string;
+  onClick?: () => void;
+}
+
+export const Card = (props: Props) => {
+
+  const { date, frontPage, tittle, onClick } = props;
+
   return (
-        <IonCard>
-          <IonCardHeader>
-            <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-            <IonCardTitle>Card Title</IonCardTitle>
-          </IonCardHeader>
+    <IonButtons onClick={onClick}>
+      <IonCard>
+        <IonCardHeader>
+          <IonImg src={frontPage}></IonImg>
+          <IonCardTitle>{tittle}</IonCardTitle>
+          <IonCardSubtitle>{date}</IonCardSubtitle>
+        </IonCardHeader>
+      </IonCard>
+    </IonButtons>
 
-          <IonCardContent>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-      </IonCardContent>
-        </IonCard>
   );
 };

@@ -19,6 +19,7 @@ export const createBinnaclesGroup = (data: BinnaclesGroup) =>async (dispatch:Fun
   try {
     const response = await axios.post(BINNACLES_GROUP_URL, data);
     if (response.data) {
+      dispatch(fetchBinnaclesGroups());
       console.log(response.data)
     }
   } catch (error) {
