@@ -6,6 +6,7 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import './Home.css';
 import { BinnaclesGroup } from '../../common/interfaces/binnaclesGroup';
 import { formatLocaleDate } from '../../utils/date';
+import { Card } from '../../components/Card/Card';
 
 const Home = () => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -66,6 +67,7 @@ const Home = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
+        <Card />
         <IonFab  vertical="bottom" horizontal="end" slot="fixed">
           <IonFabButton id="open-modal">
             <IonIcon icon={add} />
