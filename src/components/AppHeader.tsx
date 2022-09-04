@@ -1,7 +1,8 @@
-import { IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar, IonContent, IonCard } from '@ionic/react';
 import { arrowBack } from 'ionicons/icons';
 import { setAppHeaderTitle } from '../redux/reducers/appHeaderReducer/appHeader';
 import { useReduxSelector, useReduxDispatch } from '../redux/store';
+
 
 const AppHeader = () => {
   const dispatch = useReduxDispatch();
@@ -26,8 +27,10 @@ const AppHeader = () => {
     <IonHeader>
       <IonToolbar>
         <IonTitle>{title}</IonTitle>
+       <IonCard></IonCard>
       </IonToolbar>
     </IonHeader>
+    
   )
 }
 
