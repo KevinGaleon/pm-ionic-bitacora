@@ -1,6 +1,6 @@
 import { IonCol, IonContent, IonGrid, IonImg, IonLabel, IonPage, IonRow, IonText, IonThumbnail } from '@ionic/react';
 import React from 'react'
-import Header from './Header';
+import Header from '../../components/Header/Header';
 import { arrowBack } from 'ionicons/icons';
 import { useReduxSelector } from '../../redux/store';
 

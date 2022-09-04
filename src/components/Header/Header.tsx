@@ -1,7 +1,8 @@
-import { IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/react'
 import React from 'react'
+import { IonButton, IonButtons, IonHeader, IonIcon, IonLabel, IonTitle, IonToolbar } from '@ionic/react'
 
 interface headerSideElement {
+  title?: string;
   iconColor?: string;
   icon?: string;
   routerLink?: string;
@@ -21,12 +22,14 @@ const Header = (props: Props) => {
       <IonToolbar>
         <IonButtons slot="start">
           <IonButton onClick={headerLeft?.onClick} routerLink={headerLeft?.routerLink} >
+            <IonLabel>{headerRight?.title}</IonLabel>
             <IonIcon slot="icon-only" icon={headerLeft?.icon} color={headerLeft?.iconColor}/>
           </IonButton>
         </IonButtons>
         <IonTitle className='ion-text-center'>{title}</IonTitle>
         <IonButtons slot="end">
           <IonButton onClick={headerRight?.onClick} routerLink={headerRight?.routerLink} >
+            <IonLabel>{headerLeft?.title}</IonLabel>
             <IonIcon slot="icon-only" icon={headerRight?.icon} color={headerRight?.iconColor}/>
           </IonButton>
         </IonButtons>
