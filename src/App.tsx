@@ -5,7 +5,6 @@ import { home, person } from 'ionicons/icons';
 
 import Home from './pages/Home/Home';
 import Settings from './pages/Settings/Settings';
-import AppHeader from './components/AppHeader';
 import { useReduxDispatch } from './redux/store';
 import { setAppHeaderTitle } from './redux/reducers/appHeaderReducer/appHeader';
 
@@ -29,6 +28,9 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import BinnaclesListScreen from './pages/BinnaclesListScreen/BinnaclesListScreen';
 
+import BinnacleScreen from './pages/BinnacleScreen/BinnacleScreen';
+import NewBinnacleForm from './pages/NewBinnacleForm/NewBinnacleForm';
+
 setupIonicReact();
 
 const App = () => {
@@ -37,13 +39,14 @@ const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <AppHeader />
         <IonContent>
           <IonTabs>
             <IonRouterOutlet>
               <Route exact path="/home" component={Home} />
               <Route exact path="/settings" component={Settings} />
               <Route exact path="/binnacles" component={BinnaclesListScreen} />
+              <Route exact path="/binnacle" component={BinnacleScreen} />
+              <Route exact path="/new-binnacle" component={NewBinnacleForm} />
               <Route exact path="/">
                 <Redirect to="/home" />
               </Route>

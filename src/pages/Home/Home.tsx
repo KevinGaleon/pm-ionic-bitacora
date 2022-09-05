@@ -9,7 +9,8 @@ import { formatLocaleDate } from '../../utils/date';
 import { Card } from '../../components/Card/Card';
 import { useReduxDispatch, useReduxSelector } from '../../redux/store';
 import { createBinnaclesGroup, fetchBinnaclesGroups } from '../../redux/services/binnaclesGroup.services';
-
+import Header from '../../components/Header/Header';
+import { setBinnacleGroupSelected } from '../../redux/reducers/binnaclesGroupReducer/binnaclesGroup';
 
 const Home = () => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -75,12 +76,15 @@ const Home = () => {
 
   return (
     <IonPage>
+      <Header title='Grupos de Bitácoras' />
       <IonContent fullscreen>
        {binnacleGroupList.map(binnaclesGroup =>{
         return <Card 
-        frontPage ={binnaclesGroup.frontPage} 
-        title = {binnaclesGroup.title}
-        date = {binnaclesGroup.date}      
+          frontPage={binnaclesGroup.frontPage} 
+          title={binnaclesGroup.title}
+          date={binnaclesGroup.date}  
+          onClick={() => dispatch(setBinnacleGroupSelected(binnaclesGroup))} 
+          routerLink='/binnacles'
         />
       })}
         <IonFab  vertical="bottom" horizontal="end" slot="fixed">
