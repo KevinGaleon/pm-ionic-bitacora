@@ -10,7 +10,7 @@ const BinnacleScreen = () => {
 
   return (
     <IonPage>
-      <Header title={title} headerLeft={{ icon: arrowBack, routerLink: '/home' }} />
+      <Header title={title} headerLeft={{ icon: arrowBack, routerLink: '/binnacles' }} />
       <IonContent>
         <IonGrid>
           <IonRow>
