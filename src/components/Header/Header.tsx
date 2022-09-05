@@ -18,6 +18,7 @@ interface Props {
 
 const Header = (props: Props) => {
   const { title, headerRight, headerLeft } = props;
+
   return (
     <IonHeader>
       <IonToolbar>
