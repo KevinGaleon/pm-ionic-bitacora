@@ -8,11 +8,13 @@ import { fetchBinnacles } from '../../redux/services/binnacle.services';
 import { CardBinnaclesList } from '../../components/CardBinnaclesList/CardBinnaclesList';
 import Header from '../../components/Header/Header';
 import { setBinnacleSelected } from '../../redux/reducers/binnacleReducer/binnacle';
+import { useHistory } from 'react-router';
 
 
 const BinnaclesListScreen = () => {
   const dispatch = useReduxDispatch();
   const { binnacleGroupSelected } = useReduxSelector(state => state.binnacleGroup);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchBinnacles());
@@ -32,7 +34,7 @@ const BinnaclesListScreen = () => {
     <IonPage>
       <Header
         title={'Bitácoras - ' + binnacleGroupSelected.title}
-        headerLeft={{ icon: arrowBack, routerLink: '/home' }}
+        headerLeft={{ icon: arrowBack, onClick: () => history.goBack() }}
         headerRight={{ icon: ellipsisHorizontal }}
       />
       <IonContent fullscreen>

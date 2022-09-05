@@ -1,19 +1,21 @@
-import { IonCol, IonContent, IonGrid, IonImg, IonLabel, IonPage, IonRow, IonText } from '@ionic/react';
 import React from 'react'
+import { IonCol, IonContent, IonGrid, IonImg, IonLabel, IonPage, IonRow, IonText } from '@ionic/react';
 import Header from '../../components/Header/Header';
-import { arrowBack, ellipsisHorizontal } from 'ionicons/icons';
 import { useReduxSelector } from '../../redux/store';
+import { arrowBack } from 'ionicons/icons';
+import { useHistory } from 'react-router';
 
 const BinnacleScreen = () => {
   const { binnacleSelected } = useReduxSelector(state => state.binnacle);
   const { title } = useReduxSelector(state => state.binnacleGroup.binnacleGroupSelected);
+  const history = useHistory();
 
   return (
     <IonPage>
       <Header
         title={title}
-        headerLeft={{ icon: arrowBack, routerLink: '/binnacles' }}
-        />
+        headerLeft={{ icon: arrowBack, onClick: () => history.goBack() }}
+      />
       <IonContent>
         <IonGrid>
           <IonRow>

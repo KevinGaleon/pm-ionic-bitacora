@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react'
-import { IonCol, IonContent, IonGrid, IonImg, IonInput, IonItem, IonLabel, IonPage, IonRow, IonTextarea, IonThumbnail, IonButtons, IonButton, IonIcon } from '@ionic/react';
+import { IonCol, IonContent, IonGrid, IonImg, IonInput, IonItem, IonLabel, IonPage, IonRow, IonTextarea } from '@ionic/react';
 import { close, sendOutline } from 'ionicons/icons';
 import Header from '../../components/Header/Header';
 import { formatLocaleDate } from '../../utils/date';
+import { useHistory } from 'react-router';
 
 const NewBinnacleForm = () => {
   const inputTitle = useRef<HTMLIonInputElement>(null);
@@ -16,6 +17,7 @@ const NewBinnacleForm = () => {
     'https://cdn.pixabay.com/photo/2017/02/07/16/47/kingfisher-2046453_960_720.jpg',
   ]);
   const currentDate = formatLocaleDate(`${new Date()}`);
+  const history = useHistory();
 
   const renderAddButton = () => {
     return (
@@ -56,19 +58,22 @@ const NewBinnacleForm = () => {
     return  rows;
   }
 
-  const resetInputs = () => {
-    inputTitle.current!.value = '';
-    inputDate.current!.value = '';
-    inputDescription.current!.value = '';
-    inputComment.current!.value = '';
+  const goToBinnacleScreen = () => {
+    history.replace('/binnacle');
   }
 
   return (
     <IonPage>
       <Header
         title='Nueva Bitácora'
-        headerLeft={{ icon: close, routerLink: '/binnacles', onClick: resetInputs }}
-        headerRight={{ icon:sendOutline , onClick: () => console.log('TODO crear nueva bitacora and dispatch response.data binacle selected'), routerLink: '/binnacle' }}
+        headerLeft={{ icon: close, onClick: () => history.goBack() }}
+        headerRight={{
+          icon: sendOutline,
+          onClick: () => { 
+            console.log('TODO crear nueva bitacora and dispatch response.data binacle selected');
+            goToBinnacleScreen();
+          }
+        }}
       />
       <IonContent>
         <IonGrid>
