@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { add } from 'ionicons/icons';
 import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonModal, IonItem, IonLabel, IonInput } from '@ionic/react';
 import { OverlayEventDetail } from '@ionic/core/components';
@@ -7,8 +7,10 @@ import './Home.css';
 import { BinnaclesGroup } from '../../common/interfaces/binnaclesGroup';
 import { formatLocaleDate } from '../../utils/date';
 import { Card } from '../../components/Card/Card';
-import { useReduxDispatch } from '../../redux/store';
-import { createBinnaclesGroup } from '../../redux/services/binnaclesGroup.services';
+import { useReduxDispatch, useReduxSelector } from '../../redux/store';
+import { createBinnaclesGroup, fetchBinnaclesGroups } from '../../redux/services/binnaclesGroup.services';
+import Header from '../../components/Header/Header';
+
 
 const Home = () => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -16,8 +18,12 @@ const Home = () => {
   const inputDate = useRef<HTMLIonInputElement>(null);
   const inputFrontPage = useRef<HTMLIonInputElement>(null);
   const currentDate = formatLocaleDate(`${new Date()}`);
+  const dispatch = useReduxDispatch ();
+  const {binnacleGroupList} = useReduxSelector(state => state.binnacleGroup);
 
-  const dispatch = useReduxDispatch();
+  useEffect(() => {
+    dispatch(fetchBinnaclesGroups());
+  }, [dispatch]);
 
   function confirm() {
     const binnacleGroup: BinnaclesGroup = {
@@ -67,12 +73,18 @@ const Home = () => {
       </IonModal>
     );
   }
-  
+
   return (
     <IonPage>
+      <Header title='Grupo de Bitácoras' />
       <IonContent fullscreen>
-        <Card frontPage='' title='Card Title' date={currentDate} />
-        <Card frontPage='' title='Animals' date={'12-09-2000'} />
+       {binnacleGroupList.map(binnaclesGroup =>{
+        return <Card 
+          frontPage ={binnaclesGroup.frontPage} 
+          title = {binnaclesGroup.title}
+          date = {binnaclesGroup.date}      
+        />
+      })}
         <IonFab  vertical="bottom" horizontal="end" slot="fixed">
           <IonFabButton id="open-modal">
             <IonIcon icon={add} />
