@@ -23,7 +23,7 @@ const NewBinnacleForm = () => {
   const currentDate = formatLocaleDate(`${new Date()}`);
   const history = useHistory();
 
-  const { _id: binnacleGroupId } = useReduxSelector(state => state.binnacleGroup.binnacleGroupSelected);
+  const { _id: binnaclesGroupId } = useReduxSelector(state => state.binnacleGroup.binnacleGroupSelected);
   const dispatch = useReduxDispatch();
 
   const addPhoto = () => {
@@ -83,7 +83,7 @@ const NewBinnacleForm = () => {
 
   const onSubmit = () => {
     const newBinnacle: Binnacle = {
-      binnacleGroupId: binnacleGroupId ?? '',
+      binnaclesGroupId: binnaclesGroupId ?? '',
       title: `${inputTitle.current?.value}`,
       description: `${inputDescription.current?.value}`,
       date: `${inputDate.current?.value}`,

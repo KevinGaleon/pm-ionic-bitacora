@@ -1,6 +1,6 @@
 export interface Binnacle {
   _id?: string;
-  binnacleGroupId: string;
+  binnaclesGroupId: string;
   title: string;
   date: string;
   description: string;

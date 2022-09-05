@@ -1,12 +1,12 @@
 import axios from "axios";
 
-import { BINNACLE_URL } from "../../common/config.api";
+import { BINNACLES_URL, BINNACLE_URL } from "../../common/config.api";
 import { Binnacle } from "../../common/interfaces/binnacle";
 import { setBinnacleList, setBinnacleSelected } from "../reducers/binnacleReducer/binnacle";
 
-export const fetchBinnacles = () =>async (dispatch:Function) => {
+export const fetchBinnacles = (binnaclesGroupId: string) =>async (dispatch:Function) => {
   try {
-    const response = await axios.get<Binnacle[]>(BINNACLE_URL);
+    const response = await axios.get<Binnacle[]>(`${BINNACLES_URL}/${binnaclesGroupId}`);
     if (response.data) {
       dispatch(setBinnacleList(response.data));
     }
@@ -20,6 +20,7 @@ export const createBinnacle = (data: Binnacle) =>async (dispatch:Function) => {
     const response = await axios.post(BINNACLE_URL, data);
     if (response.data) {
       dispatch(setBinnacleSelected(response.data));
+      dispatch(fetchBinnacles(response.data.binnaclesGroupId));
       console.log(response.data);
     }
   } catch (error) {

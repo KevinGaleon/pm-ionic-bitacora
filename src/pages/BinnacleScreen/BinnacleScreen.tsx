@@ -1,8 +1,8 @@
 import React from 'react'
-import { IonCol, IonContent, IonGrid, IonImg, IonLabel, IonPage, IonRow, IonText } from '@ionic/react';
+import { IonCol, IonContent, IonFab, IonFabButton, IonFabList, IonGrid, IonIcon, IonImg, IonLabel, IonPage, IonRow, IonText } from '@ionic/react';
 import Header from '../../components/Header/Header';
+import { arrowBack, chevronBackCircle, cloudDownload, pencil, trash } from 'ionicons/icons';
 import { useReduxSelector } from '../../redux/store';
-import { arrowBack } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 
 const BinnacleScreen = () => {
@@ -58,6 +58,24 @@ const BinnacleScreen = () => {
           })}
         </IonGrid>
       </IonContent>
+
+      <IonFab vertical="bottom" horizontal="end">
+      <IonFabButton>
+      <IonIcon icon={chevronBackCircle} />
+      </IonFabButton>
+
+      <IonFabList side="start">
+        <IonFabButton>
+          <IonIcon icon={pencil} />
+        </IonFabButton>
+        <IonFabButton>
+          <IonIcon icon={cloudDownload} />
+        </IonFabButton>
+        <IonFabButton>
+          <IonIcon icon={trash} />
+        </IonFabButton>
+      </IonFabList>
+    </IonFab>
     </IonPage>
   );
 }
