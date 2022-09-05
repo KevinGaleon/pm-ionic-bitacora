@@ -79,6 +79,7 @@ const Home = () => {
       <Header title='Grupos de Bitácoras' />
       <IonContent fullscreen>
        {binnacleGroupList.map(binnaclesGroup =>{
+        console.log(binnaclesGroup);
         return <Card 
           frontPage={binnaclesGroup.frontPage} 
           title={binnaclesGroup.title}

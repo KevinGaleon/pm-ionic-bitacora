@@ -6,7 +6,7 @@ import { useReduxDispatch, useReduxSelector } from '../../redux/store';
 import { fetchBinnacles } from '../../redux/services/binnacle.services';
 import { CardBinnaclesList } from '../../components/CardBinnaclesList/CardBinnaclesList';
 import Header from '../../components/Header/Header';
-import { setBinnacleSelected } from '../../redux/reducers/binnacleReducer/binnacle';
+import { setBinnacleList, setBinnacleSelected } from '../../redux/reducers/binnacleReducer/binnacle';
 import { useHistory } from 'react-router';
 
 const BinnaclesListScreen = () => {
@@ -18,6 +18,13 @@ const BinnaclesListScreen = () => {
   useEffect(() => {
     dispatch(fetchBinnacles(binnacleGroupSelected._id ?? ''));
   }, [dispatch, binnacleGroupSelected._id]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setBinnacleList([]));
+    }
+  }, [dispatch]);
+  
 
   return (
     <IonPage>
